@@ -1,0 +1,58 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3 class="primaryColor">Teacher <span *ngIf="user"> - {{user.code}}</span></h3>
+        <span class="spacer"></span>
+        <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="user" class="table-container align-left">
+        <h5 class="primaryColor group-heading">Baisc</h5>
+        <div class="row view-cont">
+            <div class="col-sm-6 col-md-3">
+                <b>First Name : </b>{{user.firstName | titlecase}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Last Name : </b>{{user.lastName | titlecase}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Status : </b>{{user.status | titlecase}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Type : </b>{{user.type | titlecase}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Mobile : </b>{{user.phone}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Email : </b>{{user.email}}
+            </div>
+        </div>
+        <h5 class="primaryColor group-heading">Address</h5>
+        <div class="row view-cont">
+            <ng-container *ngIf="user.address">
+                <div class="col-sm-6 col-md-3">
+                    <b>House No : </b>{{user.address.line1}}
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <b>Street : </b>{{user.address.line2}}
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <b>Landmark : </b>{{user.address.landmark}}
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <b>City : </b>{{user.address.city}}
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <b>State : </b>{{user.address.state}}
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <b>Pin Code : </b>{{user.address.pinCode}}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

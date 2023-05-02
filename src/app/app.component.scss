@@ -1,0 +1,28 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.3/css/mdb.min.css);
+
+.my-navbar {
+    background-color: #e6e6fa !important;
+}
+
+.menu-items {
+    color: #4b0082 !important;
+    font-weight: 400;
+    font-size: 18px;
+    background-color: transparent !important;
+}
+
+.nav-item .active {
+    color: #4b0082 !important;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: transparent;
+}
+
+.side-menu-items {
+    margin: 5px;
+}
+
+.content {
+    margin-top: 100px;
+}

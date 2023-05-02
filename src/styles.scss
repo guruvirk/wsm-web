@@ -1,0 +1,194 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+// $wsm-web-primary: mat.define-palette(mat.$indigo-palette);
+// $wsm-web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+.primaryColor {
+  color: #4b0082 !important;
+}
+
+.accentColor {
+  color: #e6e6fa !important;
+}
+
+$my-indigo: (
+  50: #4b0082,
+  100: #4b0082,
+  200: #4b0082,
+  300: #4b0082,
+  400: #4b0082,
+  500: #4b0082,
+  600: #4b0082,
+  700: #4b0082,
+  800: #4b0082,
+  900: #4b0082,
+  contrast: (50: #4b0082,
+    100: #4b0082,
+    200: #4b0082,
+    300: #4b0082,
+    400: #4b0082,
+    500: #4b0082,
+    600: #4b0082,
+    700: #4b0082,
+    800: #4b0082,
+    900: #4b0082)
+);
+
+$my-levender: (
+  50: #e6e6fa,
+  100: #e6e6fa,
+  200: #e6e6fa,
+  300: #e6e6fa,
+  400: #e6e6fa,
+  500: #e6e6fa,
+  600: #e6e6fa,
+  700: #e6e6fa,
+  800: #e6e6fa,
+  900: #e6e6fa,
+  contrast: (50: #e6e6fa,
+    100: #e6e6fa,
+    200: #e6e6fa,
+    300: #e6e6fa,
+    400: #e6e6fa,
+    500: #e6e6fa,
+    600: #e6e6fa,
+    700: #e6e6fa,
+    800: #e6e6fa,
+    900: #e6e6fa,
+  )
+);
+
+$my-purple: (
+  50: #800080,
+  100: #800080,
+  200: #800080,
+  300: #800080,
+  400: #800080,
+  500: #800080,
+  600: #800080,
+  700: #800080,
+  800: #800080,
+  900: #800080,
+  contrast: (50: #800080,
+    100: #800080,
+    200: #800080,
+    300: #800080,
+    400: #800080,
+    500: #800080,
+    600: #800080,
+    700: #800080,
+    800: #800080,
+    900: #800080,
+  )
+);
+
+$wsm-web-primary: mat.define-palette($my-indigo, 200);
+$wsm-web-accent: mat.define-palette($my-levender, 200);
+
+$my-primary: mat.define-palette($my-indigo, 500);
+$my-accent: mat.define-palette($my-levender, 500);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((color: (primary: $my-primary,
+        accent: $my-accent,
+        warn: $my-warn,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+// The warn palette is optional (defaults to red).
+$wsm-web-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$wsm-web-theme: mat.define-light-theme((color: (primary: $wsm-web-primary,
+        accent: $wsm-web-accent,
+        warn: $wsm-web-warn,
+      )));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($wsm-web-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.header {
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.header .spacer {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.header>.btn:hover {
+  color: var(--accent) !important;
+}
+
+.page {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+.table-container {
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+th {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.group-heading {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+}
+
+toptip span { 
+  z-index: 9999999;
+  position: absoulute;
+}

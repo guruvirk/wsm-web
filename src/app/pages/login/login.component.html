@@ -1,0 +1,36 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="container page">
+        <div class="loginCard">
+            <h4 style="margin-top: 20px;">Teacher Login</h4>
+            <mat-form-field class="full-width-input">
+                <mat-label>Code</mat-label>
+                <input (ngModelChange)="empty('code')" matInput numbersOnly name="code" [(ngModel)]="code"
+                    [required]="true">
+            </mat-form-field>
+            OR
+            <mat-form-field class="full-width-input">
+                <mat-label>Mobile</mat-label>
+                <span class="primaryColor" matPrefix>+91 &nbsp;</span>
+                <input (ngModelChange)="empty('phone')" matInput numbersOnly name="phone" [(ngModel)]="phone"
+                    minlength="10" maxlength="10" [required]="true">
+            </mat-form-field>
+            OR
+            <mat-form-field class="full-width-input">
+                <mat-label>Email</mat-label>
+                <input (ngModelChange)="empty('email')" matInput numbersOnly name="email" [(ngModel)]="email"
+                    [required]="true">
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="!isPassVisible ? 'password' : 'text'" name="password" [(ngModel)]="password"
+                    [required]="true">
+                <mat-icon (click)="isPassVisible=!isPassVisible" color="primary" matSuffix>remove_red_eye</mat-icon>
+            </mat-form-field>
+            <button (click)="login()" mat-raised-button color="primary"><b>Continue to Login</b></button>
+            <br>
+            <br>
+            <p><a [routerLink]="['/', 'reset']">Forgot password?</a></p>
+        </div>
+    </div>
+</div>

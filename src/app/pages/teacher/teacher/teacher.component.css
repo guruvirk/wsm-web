@@ -1,0 +1,5 @@
+  .view-cont div {
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 960px) {}
