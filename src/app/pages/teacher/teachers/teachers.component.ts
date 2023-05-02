@@ -6,7 +6,7 @@ import { Page, User } from 'src/app/models';
 import { UserService } from 'src/app/services/user.service';
 import { IPager } from 'src/app/models/pager.interface';
 import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
-import { faPen, faEye, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faEye, faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-teachers',
@@ -23,7 +23,7 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
     label: String
   }[];
   query = {
-    limit: 10,
+    limit: 2,
     sort: "new"
   };
   isLoading = false;
@@ -32,6 +32,7 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
   faPen = faPen;
   faEye = faEye;
   faPlus = faPlus;
+  faRotateRight = faRotateRight;
 
   constructor(
     private api: UserService,
@@ -131,6 +132,10 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
 
   view(id: string) {
     this.router.navigate(["teachers", id])
+  }
+
+  reset() {
+    this.get()
   }
 
 }

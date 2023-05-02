@@ -4,6 +4,10 @@
         <span class="spacer"></span>
         <h3 class="primaryColor">Teachers</h3>
         <span class="spacer"></span>
+        <button (click)="reset()" matTooltip="Reset" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faRotateRight"></fa-icon>
+        </button>
+        &nbsp;&nbsp;
         <button (click)="new()" matTooltip="New" mat-mini-fab color="primary" aria-label="Back">
             <fa-icon class="accentColor" [icon]="faPlus"></fa-icon>
         </button>

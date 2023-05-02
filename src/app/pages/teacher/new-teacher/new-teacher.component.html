@@ -26,7 +26,7 @@
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>Status</mat-label>
-                <mat-select [required]="true" [(ngModel)]="user.status">
+                <mat-select name="status" [required]="true" [(ngModel)]="user.status">
                     <mat-option value="active">Active
                     </mat-option>
                     <mat-option value="inactive">Inactive
@@ -35,7 +35,7 @@
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>Type</mat-label>
-                <mat-select [required]="true" [(ngModel)]="user.type">
+                <mat-select name="type" [required]="true" [(ngModel)]="user.type">
                     <mat-option value="admin">Admin
                     </mat-option>
                     <mat-option value="accounts">Accounts
@@ -73,27 +73,27 @@
         <div class="row">
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>House No</mat-label>
-                <input [(ngModel)]="user.address.line1" matInput>
+                <input name="line1" [(ngModel)]="user.address.line1" matInput>
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>Street</mat-label>
-                <input [(ngModel)]="user.address.line2" matInput>
+                <input name="line2" [(ngModel)]="user.address.line2" matInput>
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>Landmark</mat-label>
-                <input [(ngModel)]="user.address.landmark" matInput>
+                <input name="landmark" [(ngModel)]="user.address.landmark" matInput>
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>City</mat-label>
-                <input [(ngModel)]="user.address.city" matInput>
+                <input name="city" [(ngModel)]="user.address.city" matInput>
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>State</mat-label>
-                <input [(ngModel)]="user.address.state" matInput>
+                <input name="state" [(ngModel)]="user.address.state" matInput>
             </mat-form-field>
             <mat-form-field class="col-sm-6 col-md-4">
                 <mat-label>Pin Code</mat-label>
-                <input [(ngModel)]="user.address.pinCode" matInput maxlength="6">
+                <input name="pinCode" [(ngModel)]="user.address.pinCode" matInput maxlength="6">
             </mat-form-field>
         </div>
     </div>

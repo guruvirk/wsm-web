@@ -192,3 +192,8 @@ toptip span {
   z-index: 9999999;
   position: absoulute;
 }
+
+input:focus, textarea:focus {
+  border-bottom: .5px solid #4b0082 !important;
+  box-shadow: 0 .5px 0 0 #4b0082 !important;
+}
