@@ -1,0 +1,28 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3 class="primaryColor">Section<span *ngIf="section">: {{section.name}}</span></h3>
+        <span class="spacer"></span>
+        <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="section" class="table-container align-left">
+        <div class="row view-cont">
+            <div class="col-sm-6 col-md-3">
+                <b>Name : </b>{{section.name | titlecase}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Class : </b>{{section.class.name}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Year : </b>{{section.class.year.name}}
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <b>Status : </b>{{section.status | titlecase}}
+            </div>
+        </div>
+    </div>
+</div>

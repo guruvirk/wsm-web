@@ -1,26 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../../services/ux.service';
-import { User } from 'src/app/models';
-import { UserService } from 'src/app/services/user.service';
+import { Class } from 'src/app/models';
+import { ClassService } from 'src/app/services/class.service';
 import { faArrowLeft, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-teacher',
-  templateUrl: './teacher.component.html',
-  styleUrls: ['./teacher.component.css']
+  selector: 'app-class',
+  templateUrl: './class.component.html',
+  styleUrls: ['./class.component.css']
 })
-export class TeacherComponent implements OnInit {
+export class ClassComponent implements OnInit {
 
   isLoading = false
   isMobile: boolean;
-  user: User
+  selectedClass: Class
+
+  sectionDisplay = "list"
 
   faArrowLeft = faArrowLeft;
   faFloppyDisk = faFloppyDisk;
 
   constructor(
-    private api: UserService,
+    private api: ClassService,
     private router: Router,
     private route: ActivatedRoute,
     private uxService: UxService) {
@@ -30,15 +32,17 @@ export class TeacherComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.isLoading = true;
-        this.api.get(params['id']).subscribe({
-          next: (user) => {
-            this.user = new User(user)
-            this.isLoading = false;
-          },
-          error: (err) => {
-            this.isLoading = false;
+        this.api.get(params['id']).subscribe(
+          {
+            next: (item) => {
+              this.selectedClass = new Class(item)
+              this.isLoading = false;
+            },
+            error: (err) => {
+              this.isLoading = false;
+            }
           }
-        })
+        )
       }
     })
   }

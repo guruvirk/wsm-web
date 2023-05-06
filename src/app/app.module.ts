@@ -34,6 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditTeacherComponent } from './pages/teacher/edit-teacher/edit-teacher.component';
 import { NewTeacherComponent } from './pages/teacher/new-teacher/new-teacher.component';
 import { TeacherComponent } from './pages/teacher/teacher/teacher.component';
+import { ClassesComponent } from './pages/class/classes/classes.component';
+import { ClassComponent } from './pages/class/class/class.component';
+import { SectionComponent } from './pages/section/section/section.component';
+import { SectionsComponent } from './pages/section/sections/sections.component';
 
 
 @NgModule({
@@ -45,7 +49,11 @@ import { TeacherComponent } from './pages/teacher/teacher/teacher.component';
     EditTeacherComponent,
     NewTeacherComponent,
     TeacherComponent,
-    LoginComponent
+    LoginComponent,
+    ClassesComponent,
+    ClassComponent,
+    SectionComponent,
+    SectionsComponent
   ],
   imports: [
     BrowserModule,

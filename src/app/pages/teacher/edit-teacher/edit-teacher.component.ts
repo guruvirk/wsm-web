@@ -15,7 +15,7 @@ export class EditTeacherComponent implements OnInit {
 
   isLoading = false
   isMobile: boolean;
-  user: User = new User({})
+  user: User
 
   permissionsControl = new FormControl('');
   permissions: string[] = ['admin', 'accounts', 'students'];

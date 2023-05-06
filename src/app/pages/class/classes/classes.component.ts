@@ -2,18 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RoleService } from '../../../services/role.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../../services/ux.service';
-import { Page, User } from 'src/app/models';
-import { UserService } from 'src/app/services/user.service';
+import { Page, Class } from 'src/app/models';
+import { ClassService } from 'src/app/services/class.service';
 import { IPager } from 'src/app/models/pager.interface';
 import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
 import { faPen, faEye, faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-teachers',
-  templateUrl: './teachers.component.html',
-  styleUrls: ['./teachers.component.css']
+  selector: 'app-classes',
+  templateUrl: './classes.component.html',
+  styleUrls: ['./classes.component.css']
 })
-export class ViewTeachersComponent implements OnInit, IPager<User> {
+export class ClassesComponent implements OnInit, IPager<Class> {
 
   @ViewChild('paginator', {})
   paginatorComponent: PaginatorComponent;
@@ -28,14 +28,14 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
   };
   isLoading = false;
   isMobile: boolean;
-  page: Page<User>;
+  page: Page<Class>;
   faPen = faPen;
   faEye = faEye;
   faPlus = faPlus;
   faRotateRight = faRotateRight;
 
   constructor(
-    private api: UserService,
+    private api: ClassService,
     private auth: RoleService,
     private router: Router,
     private route: ActivatedRoute,
@@ -80,7 +80,7 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
       if (page.items && page.items.length) {
         let i = 0
         for (let item of page.items) {
-          this.page.items[i] = (new User(item))
+          this.page.items[i] = (new Class(item))
           i++
         }
       }
@@ -122,16 +122,8 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
     return options;
   }
 
-  new() {
-    this.router.navigate(["teachers/new"])
-  }
-
-  edit(id: string) {
-    this.router.navigate(["teachers/edit", id])
-  }
-
   view(id: string) {
-    this.router.navigate(["teachers", id])
+    this.router.navigate(["classes", id])
   }
 
   reset() {

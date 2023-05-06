@@ -2,7 +2,7 @@
 <div class="page">
     <div class="header">
         <span class="spacer"></span>
-        <h3 class="primaryColor">Edit Teacher <span *ngIf="user"> - {{user.code}}</span></h3>
+        <h3 class="primaryColor">Edit Teacher<span *ngIf="user">: {{user.code}}</span></h3>
         <span class="spacer"></span>
         <button (click)="save()" mat-mini-fab color="primary" matTooltip="Save" aria-label="Back">
             <fa-icon class="accentColor" [icon]="faFloppyDisk"></fa-icon>

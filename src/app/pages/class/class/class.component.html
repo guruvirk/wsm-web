@@ -1,0 +1,31 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3 class="primaryColor">Class<span *ngIf="selectedClass">: {{selectedClass.name}}</span></h3>
+        <span class="spacer"></span>
+        <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="selectedClass" class="table-container align-left">
+        <div class="row view-cont">
+            <h5 class="col-sm-6 col-md-4">
+                <b>Name : </b>{{selectedClass.name | titlecase}}
+            </h5>
+            <h5 class="col-sm-6 col-md-4">
+                <b>Year : </b>{{selectedClass.year.name}}
+            </h5>
+            <h5 class="col-sm-6 col-md-4">
+                <b>Status : </b>{{selectedClass.status | titlecase}}
+            </h5>
+        </div>
+        <br>
+        <mat-card>
+            <mat-card-content>
+                <app-sections [selectedClass]="selectedClass"></app-sections>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 <processing-indicator *ngIf="isLoading"></processing-indicator>
-<div class="page">
+<div [ngClass]="{'page': !selectedClass}">
     <div class="header">
         <span class="spacer"></span>
-        <h3 class="primaryColor">Teachers</h3>
+        <h3 class="primaryColor">Sections</h3>
         <span class="spacer"></span>
         <button (click)="reset()" matTooltip="Reset" mat-mini-fab color="primary" aria-label="Back">
             <fa-icon class="accentColor" [icon]="faRotateRight"></fa-icon>
@@ -26,23 +26,17 @@
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef class="primaryColor"> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.firstName | titlecase}} {{element.lastName |
-                    titlecase}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef class="primaryColor"> Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.type | titlecase}} </td>
+            <ng-container matColumnDef="class">
+                <th mat-header-cell *matHeaderCellDef class="primaryColor"> Year </th>
+                <td mat-cell *matCellDef="let element"> {{element.class.name | titlecase}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef class="primaryColor"> Email </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="phone">
-                <th mat-header-cell *matHeaderCellDef class="primaryColor"> Phone </th>
-                <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef class="primaryColor"> Year </th>
+                <td mat-cell *matCellDef="let element"> {{element.class.year.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
@@ -63,10 +57,9 @@
                 </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="['pic', 'code', 'name', 'type', 'email', 'phone', 'status', 'action']">
+            <tr mat-header-row *matHeaderRowDef="['pic', 'code', 'name', 'class', 'year', 'status', 'action']">
             </tr>
-            <tr mat-row
-                *matRowDef="let row; columns: ['pic', 'code', 'name', 'type', 'email', 'phone', 'status', 'action'];">
+            <tr mat-row *matRowDef="let row; columns: ['pic', 'code', 'name', 'class', 'year', 'status', 'action'];">
             </tr>
         </table>
         <div class="paginator">

@@ -1,19 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { RoleService } from '../../../services/role.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../../services/ux.service';
-import { Page, User } from 'src/app/models';
-import { UserService } from 'src/app/services/user.service';
+import { Class, Page, Section } from 'src/app/models';
+import { SectionService } from 'src/app/services/section.service';
 import { IPager } from 'src/app/models/pager.interface';
 import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
 import { faPen, faEye, faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-teachers',
-  templateUrl: './teachers.component.html',
-  styleUrls: ['./teachers.component.css']
+  selector: 'app-sections',
+  templateUrl: './sections.component.html',
+  styleUrls: ['./sections.component.css']
 })
-export class ViewTeachersComponent implements OnInit, IPager<User> {
+export class SectionsComponent implements OnInit, IPager<Section> {
+
+  @Input()
+  selectedClass: Class
 
   @ViewChild('paginator', {})
   paginatorComponent: PaginatorComponent;
@@ -28,14 +31,14 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
   };
   isLoading = false;
   isMobile: boolean;
-  page: Page<User>;
+  page: Page<Section>;
   faPen = faPen;
   faEye = faEye;
   faPlus = faPlus;
   faRotateRight = faRotateRight;
 
   constructor(
-    private api: UserService,
+    private api: SectionService,
     private auth: RoleService,
     private router: Router,
     private route: ActivatedRoute,
@@ -43,10 +46,10 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
     if (window.screen.width < 781) {
       this.isMobile = true
     }
-    this.get()
   }
 
   ngOnInit() {
+    this.get()
   }
 
   get(queryOptions?: any) {
@@ -75,12 +78,15 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
     } else {
       (this.query as any)['offset'] = 0
     }
+    if (this.selectedClass) {
+      (this.query as any)["class"] = this.selectedClass.id
+    }
     this.api.search(this.query).subscribe(page => {
       this.page = page
       if (page.items && page.items.length) {
         let i = 0
         for (let item of page.items) {
-          this.page.items[i] = (new User(item))
+          this.page.items[i] = (new Section(item))
           i++
         }
       }
@@ -122,20 +128,20 @@ export class ViewTeachersComponent implements OnInit, IPager<User> {
     return options;
   }
 
-  new() {
-    this.router.navigate(["teachers/new"])
+  view(id: string) {
+    this.router.navigate(["sections", id])
   }
 
   edit(id: string) {
-    this.router.navigate(["teachers/edit", id])
-  }
-
-  view(id: string) {
-    this.router.navigate(["teachers", id])
+    this.router.navigate(["sections", "edit", id])
   }
 
   reset() {
     this.get()
+  }
+
+  new() {
+    this.router.navigate(["sections", "new"])
   }
 
 }
