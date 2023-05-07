@@ -38,6 +38,12 @@ import { ClassesComponent } from './pages/class/classes/classes.component';
 import { ClassComponent } from './pages/class/class/class.component';
 import { SectionComponent } from './pages/section/section/section.component';
 import { SectionsComponent } from './pages/section/sections/sections.component';
+import { StudentComponent } from './pages/student/student/student.component';
+import { StudentsComponent } from './pages/student/students/students.component';
+import { NewSectionComponent } from './pages/section/new-section/new-section.component';
+import { EditSectionComponent } from './pages/section/edit-section/edit-section.component';
+import { NewStudentComponent } from './pages/student/new-student/new-student.component';
+import { EditStudentComponent } from './pages/student/edit-student/edit-student.component';
 
 
 @NgModule({
@@ -53,7 +59,13 @@ import { SectionsComponent } from './pages/section/sections/sections.component';
     ClassesComponent,
     ClassComponent,
     SectionComponent,
-    SectionsComponent
+    SectionsComponent,
+    NewSectionComponent,
+    EditSectionComponent,
+    StudentsComponent,
+    StudentComponent,
+    NewStudentComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,

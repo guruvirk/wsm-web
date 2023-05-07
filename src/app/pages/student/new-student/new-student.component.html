@@ -1,0 +1,94 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3 class="primaryColor">Create Student <span *ngIf="selectedSection">: {{selectedSection.class.name}} -
+                {{selectedSection.name}}
+                ({{selectedSection.class.year.name}})</span></h3>
+        <span class="spacer"></span>
+        <button (click)="create()" mat-mini-fab color="primary" matTooltip="Save" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faFloppyDisk"></fa-icon>
+        </button>
+        &nbsp;&nbsp;
+        <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="user" class="table-container">
+        <h5 class="primaryColor group-heading">Baisc</h5>
+        <div class="row">
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>First Name</mat-label>
+                <input matInput name="firstName" type="text" [(ngModel)]="user.firstName" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Last Name</mat-label>
+                <input matInput name="lastName" type="text" [(ngModel)]="user.lastName" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Status</mat-label>
+                <mat-select name="status" [required]="true" [(ngModel)]="user.status">
+                    <mat-option value="active">Active
+                    </mat-option>
+                    <mat-option value="inactive">Inactive
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Mobile</mat-label>
+                <span class="primaryColor" matPrefix>+91 &nbsp;</span>
+                <input matInput numbersOnly name="phone" [(ngModel)]="user.phone" minlength="10" maxlength="10"
+                    [required]="true">
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Email</mat-label>
+                <input matInput numbersOnly name="email" [(ngModel)]="user.email" [required]="true">
+            </mat-form-field>
+        </div>
+        <h5 *ngIf="!selectedSection" class="primaryColor group-heading">Class and Section</h5>
+        <div class="row">
+            <mat-form-field *ngIf="!selectedSection" class="col-sm-6 col-md-6">
+                <mat-label>Class</mat-label>
+                <mat-select name="type" [required]="true" [(ngModel)]="user.class">
+                    <mat-option *ngFor="let class of classes" [value]="class">{{class.name}} ({{class.year.name}})
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="!selectedSection" class="col-sm-6 col-md-6">
+                <mat-label>Section</mat-label>
+                <mat-select name="type" [required]="true" [(ngModel)]="user.class">
+                    <mat-option *ngFor="let section of sections" [value]="section">{{section.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <h5 class="primaryColor group-heading">Address</h5>
+        <div class="row">
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>House No</mat-label>
+                <input name="line1" [(ngModel)]="user.address.line1" matInput>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Street</mat-label>
+                <input name="line2" [(ngModel)]="user.address.line2" matInput>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Landmark</mat-label>
+                <input name="landmark" [(ngModel)]="user.address.landmark" matInput>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>City</mat-label>
+                <input name="city" [(ngModel)]="user.address.city" matInput>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>State</mat-label>
+                <input name="state" [(ngModel)]="user.address.state" matInput>
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-4">
+                <mat-label>Pin Code</mat-label>
+                <input name="pinCode" [(ngModel)]="user.address.pinCode" matInput maxlength="6">
+            </mat-form-field>
+        </div>
+    </div>
+</div>

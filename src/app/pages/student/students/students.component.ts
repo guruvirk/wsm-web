@@ -2,21 +2,24 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { RoleService } from '../../../services/role.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UxService } from '../../../services/ux.service';
-import { Class, Page, Section } from 'src/app/models';
-import { SectionService } from 'src/app/services/section.service';
+import { Class, Page, Section, Student } from 'src/app/models';
 import { IPager } from 'src/app/models/pager.interface';
 import { PaginatorComponent } from 'src/app/components/paginator/paginator.component';
 import { faPen, faEye, faPlus, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
-  selector: 'app-sections',
-  templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.css']
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrls: ['./students.component.css']
 })
-export class SectionsComponent implements OnInit, IPager<Section> {
+export class StudentsComponent implements OnInit, IPager<Student> {
 
   @Input()
   selectedClass: Class
+
+  @Input()
+  selectedSection: Section
 
   @ViewChild('paginator', {})
   paginatorComponent: PaginatorComponent;
@@ -31,14 +34,14 @@ export class SectionsComponent implements OnInit, IPager<Section> {
   };
   isLoading = false;
   isMobile: boolean;
-  page: Page<Section>;
+  page: Page<Student>;
   faPen = faPen;
   faEye = faEye;
   faPlus = faPlus;
   faRotateRight = faRotateRight;
 
   constructor(
-    private api: SectionService,
+    private api: StudentService,
     private auth: RoleService,
     private router: Router,
     private route: ActivatedRoute,
@@ -81,12 +84,15 @@ export class SectionsComponent implements OnInit, IPager<Section> {
     if (this.selectedClass) {
       (this.query as any)["class"] = this.selectedClass.id
     }
+    if (this.selectedSection) {
+      (this.query as any)["section"] = this.selectedSection.id
+    }
     this.api.search(this.query).subscribe(page => {
       this.page = page
       if (page.items && page.items.length) {
         let i = 0
         for (let item of page.items) {
-          this.page.items[i] = (new Section(item))
+          this.page.items[i] = (new Student(item))
           i++
         }
       }
@@ -129,11 +135,11 @@ export class SectionsComponent implements OnInit, IPager<Section> {
   }
 
   view(id: string) {
-    this.router.navigate(["sections", id])
+    this.router.navigate(["students", id])
   }
 
   edit(id: string) {
-    this.router.navigate(["sections", "edit", id])
+    this.router.navigate(["students", "edit", id])
   }
 
   reset() {
@@ -141,7 +147,7 @@ export class SectionsComponent implements OnInit, IPager<Section> {
   }
 
   new() {
-    this.router.navigate(["sections", "new", this.selectedClass.id])
+    this.router.navigate(["students", "new", this.selectedSection.id])
   }
 
 }

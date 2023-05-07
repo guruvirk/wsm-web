@@ -1,0 +1,34 @@
+<processing-indicator *ngIf="isLoading"></processing-indicator>
+<div class="page">
+    <div class="header">
+        <span class="spacer"></span>
+        <h3 class="primaryColor">Update Section <span *ngIf="section && section.class">: {{section.code}} - {{section.class.name}}
+                ({{section.class.year.name}})</span></h3>
+        <span class="spacer"></span>
+        <button (click)="update()" mat-mini-fab color="primary" matTooltip="Save" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faFloppyDisk"></fa-icon>
+        </button>
+        &nbsp;&nbsp;
+        <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
+            <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="section" class="table-container">
+        <div class="row">
+            <mat-form-field class="col-sm-6 col-md-6">
+                <mat-label>Name</mat-label>
+                <input matInput name="firstName" type="text" [(ngModel)]="section.name" [required]="true">
+            </mat-form-field>
+            <mat-form-field class="col-sm-6 col-md-6">
+                <mat-label>Status</mat-label>
+                <mat-select name="status" [required]="true" [(ngModel)]="section.status">
+                    <mat-option value="active">Active
+                    </mat-option>
+                    <mat-option value="inactive">Inactive
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

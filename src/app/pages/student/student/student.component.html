@@ -2,33 +2,27 @@
 <div class="page">
     <div class="header">
         <span class="spacer"></span>
-        <h3 class="primaryColor">Section<span *ngIf="section">: {{section.name}}</span></h3>
+        <h3 class="primaryColor">Student<span *ngIf="student">: {{student.firstName}}</span></h3>
         <span class="spacer"></span>
         <button (click)="back()" matTooltip="Back" mat-mini-fab color="primary" aria-label="Back">
             <fa-icon class="accentColor" [icon]="faArrowLeft"></fa-icon>
         </button>
     </div>
     <br>
-    <div *ngIf="section" class="table-container align-left">
+    <div *ngIf="student" class="table-container align-left">
         <div class="row view-cont">
             <div class="col-sm-6 col-md-3">
-                <b>Name : </b>{{section.name | titlecase}}
+                <b>Name : </b>{{student.firstName | titlecase}}
             </div>
             <div class="col-sm-6 col-md-3">
-                <b>Class : </b>{{section.class.name}}
+                <b>Class : </b>{{student.class.name}}
             </div>
             <div class="col-sm-6 col-md-3">
-                <b>Year : </b>{{section.class.year.name}}
+                <b>Year : </b>{{student.class.year.name}}
             </div>
             <div class="col-sm-6 col-md-3">
-                <b>Status : </b>{{section.status | titlecase}}
+                <b>Status : </b>{{student.status | titlecase}}
             </div>
         </div>
-        <br>
-        <mat-card>
-            <mat-card-content>
-                <app-students [selectedSection]="section"></app-students>
-            </mat-card-content>
-        </mat-card>
     </div>
 </div>
